@@ -1,0 +1,6 @@
+Flask
+Flask-CORS
+Flask-Session
+python-dotenv
+werkzeug
+cs50

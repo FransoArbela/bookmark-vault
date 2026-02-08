@@ -1,0 +1,117 @@
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply px-3 py-1 bg-gray-400 text-white text-sm rounded hover:bg-gray-500 transition-colors cursor-pointer;
+  }
+
+  .btn-danger {
+    @apply px-3 py-1 bg-[#c43f35] text-white rounded hover:bg-red-800 transition-colors cursor-pointer;
+  }
+
+
+  .card {
+    @apply bg-white rounded border border-gray-200 shadow-sm hover:shadow-md transition-all p-5;
+  }
+
+  .card-favorite {
+    @apply bg-accent-50 border-accent-300 ring-1 ring-accent-200;
+  }
+
+
+  .form-input {
+    @apply w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 focus:ring-1 focus:ring-primary-600 transition-colors;
+  }
+
+  .form-textarea {
+    @apply w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary-600 focus:ring-1 focus:ring-primary-600 transition-colors resize-none;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+
+  .tag {
+    @apply inline-block px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-medium;
+  }
+
+  .tag-favorite {
+    @apply bg-accent-100 text-accent-700;
+  }
+
+  .link-primary {
+    @apply text-primary-600 hover:text-primary-500 transition-colors;
+  }
+
+  .link-primary-bold {
+    @apply text-lg font-semibold text-primary-600 hover:text-primary-500 break-all flex items-center gap-2;
+  }
+
+  .container-main {
+    @apply max-w-7xl mx-auto px-4 py-8;
+  }
+
+  .form-section {
+    @apply bg-white rounded border border-primary-200 shadow-sm p-6 bg-linear-to-br from-primary-50 to-accent-50;
+  }
+
+  .header-primary {
+    @apply text-3xl font-bold text-primary-900;
+  }
+
+  .header-secondary {
+    @apply text-2xl font-bold text-primary-900 mb-6;
+  }
+
+  .subheader {
+    @apply text-gray-600 text-sm mt-1;
+  }
+
+  .star-icon {
+    @apply text-accent-500 text-xl;
+  }
+
+  .search-section {
+    @apply bg-white rounded-lg border border-gray-200 shadow-sm p-4;
+  }
+
+  .bookmark-meta {
+    @apply text-xs text-gray-400;
+  }
+
+  .bookmark-url {
+    @apply text-sm text-gray-500 mt-1 break-all hover:text-gray-700;
+  }
+
+  .bookmark-note {
+    @apply text-sm text-gray-600 mb-3 italic;
+  }
+
+  .gradient-primary-accent {
+    @apply bg-linear-to-br from-primary-50 to-accent-50;
+  }
+
+  .button-group {
+    @apply flex gap-2;
+  }
+
+  .section-spacing {
+    @apply space-y-4;
+  }
+
+  .btn-favorite {
+    @apply p-2 rounded hover:bg-accent-100 text-xl transition-colors;
+  }
+
+  .form-card {
+    @apply bg-white rounded border border-gray-200 shadow-sm p-8 space-y-6;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+}
+
+

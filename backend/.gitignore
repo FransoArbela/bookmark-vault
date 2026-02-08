@@ -1,0 +1,20 @@
+# Environment and secrets
+.env
+
+# Python caching
+__pycache__/
+*.pyc
+*.pyo
+
+# Database files
+finance.db
+bookmarks.db
+*.db
+
+# Flask sessions (temporary user session data)
+.flask_session/
+flask_session/
+
+# Virtual environment
+.venv/
+venv/
