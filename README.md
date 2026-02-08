@@ -36,44 +36,6 @@ Bookmark Vault is a personal bookmark manager that allows users to save, organiz
 - ✅ Modular component-based CSS architecture
 - ✅ Separated API service layer for better code organization
 
-## Project Structure
-
-```
-bookmark-vault/
-├── backend/
-│   ├── app.py              # Flask application entry point
-│   ├── db.py               # Database connection setup
-│   ├── utils.py            # Shared utilities (authentication)
-│   ├── schema.sql          # Database schema initialization
-│   ├── bookmarks_seed.py   # Sample bookmarks data and seeding function
-│   ├── seed.py             # Manual seeding script
-│   ├── requirements.txt    # Python dependencies
-│   ├── .env                # Environment variables (not in git)
-│   └── routes/
-│       ├── __init__.py     # Route registration
-│       ├── auth.py         # Authentication endpoints (register, login, logout)
-│       ├── bookmarks.py    # Bookmark CRUD endpoints
-│       └── health.py       # Health check endpoint
-└── frontend/
-    ├── src/
-    │   ├── App.jsx         # Main React component with auth state
-    │   ├── Login.jsx       # Login/Register form component
-    │   ├── Bookmarks.jsx   # Bookmarks list and management UI
-    │   ├── api.js          # Base API fetch wrapper
-    │   ├── index.css       # Global styles entry point
-    │   ├── services/       # API service layer
-    │   │   ├── authApi.js  # Authentication API calls
-    │   │   └── bookmarkApi.js  # Bookmark API calls
-    │   └── styles/         # Modular CSS architecture
-    │       ├── tailwind.css    # Tailwind import
-    │       ├── theme.css       # Custom color theme (@theme)
-    │       ├── base.css        # Base typography styles
-    │       └── components.css  # Reusable component classes
-    ├── package.json
-    ├── vite.config.js
-    └── index.html
-```
-
 ## Installation & Setup
 
 ### Prerequisites
