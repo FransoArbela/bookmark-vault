@@ -20,7 +20,7 @@ def register():
     if existing:
         return jsonify({"error": "username already taken"}), 400
 
-    password_hash = generate_password_hash(password)
+    password_hash = generate_password_hash(password, method="pbkdf2:sha256")
     db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, password_hash)
 
     # Get the newly created user

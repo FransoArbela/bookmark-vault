@@ -43,35 +43,6 @@ Bookmark Vault is a personal bookmark manager that allows users to save, organiz
 - Node.js 18 or higher
 - npm
 
-### Quick Start (For Graders)
-
-**Everything is pre-configured. Just run these commands:**
-
-**Terminal 1 - Backend:**
-```bash
-cd backend
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
-flask --app app run
-```
-Backend runs at: `http://localhost:5000`
-
-**Terminal 2 - Frontend:**
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Frontend runs at: `http://localhost:5173`
-
-Then open `http://localhost:5173` in your browser and start using the app!
-
----
-
-### Detailed Setup Instructions
-
 #### Backend Setup
 
 1. Navigate to the backend directory:
