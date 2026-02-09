@@ -1,49 +1,81 @@
 # Bookmark Vault
 
-A full-stack web application for saving and organizing bookmarks with search, tagging, and favorites functionality.
+Bookmark Vault is a full-stack web application for saving and organizing bookmarks with search, tagging, and favorites functionality. It is designed as a personal knowledge hub where a user can quickly capture links, add context (tags and notes), and later retrieve them with fast search and clear organization. The interface is intentionally clean and focused, so the core flow of saving a link, finding it again, and marking favorites feels lightweight and reliable.
 
-#### Video Demo: [URL HERE]
+#### Video Demo: [https://youtu.be/4kcOqGuxAZQ]
 
 ## Description
 
-Bookmark Vault is a personal bookmark manager that allows users to save, organize, search, and categorize their favorite websites. Users can register an account, add bookmarks with titles and descriptions, tag them for organization, mark favorites, and search through their collection. The application features a clean, modern interface with a purple/magenta color theme and provides a seamless experience for managing web bookmarks.
+This project lets users register accounts, log in, and manage a private collection of bookmarks. Each bookmark stores a title, URL, optional tags, and a short note. Users can search across multiple fields, mark favorites to keep important links at the top, and delete entries with a confirmation prompt. For a smooth first-run experience, new accounts receive a small set of seeded bookmarks so the UI is not empty and all features are immediately visible.
+
+The goal of the project is to demonstrate a complete, production-style workflow in a compact codebase: a Flask API that validates requests and enforces authentication, a SQLite database to persist data, and a React front end that provides a responsive, modern UI. I also focused on maintainable separation of concerns by keeping API calls in a service layer and using modular CSS to keep styles consistent.
 
 ## Tech Stack
 
 ### Backend
-- **Python 3** with Flask web framework
-- **SQLite** database with CS50 SQL library
-- **Flask-Session** for session management
-- **Flask-CORS** for cross-origin requests
-- **Werkzeug** for password hashing
+- Python 3 with Flask
+- SQLite database with CS50 SQL library
+- Flask-Session for server-side sessions
+- Flask-CORS for cross-origin requests
+- Werkzeug for password hashing
 
 ### Frontend
-- **React 19** with Vite build tool
-- **Tailwind CSS v4** for styling
-- Modern component-based architecture
+- React 19 with Vite
+- Tailwind CSS v4
+- Component-based structure
 
 ## Features
 
-- ✅ User authentication (register/login/logout)
-- ✅ Auto-seeded sample bookmarks for new users (10 default bookmarks)
-- ✅ Create bookmarks with title, URL, tags, and notes
-- ✅ Search bookmarks by title, URL, tags, or notes
-- ✅ Mark bookmarks as favorites (sorted to top)
-- ✅ Delete bookmarks with confirmation dialog
-- ✅ Session-based authentication with secure cookies
-- ✅ Responsive design with adjustable border radius
-- ✅ Custom purple/magenta oklch color theme
-- ✅ Modular component-based CSS architecture
-- ✅ Separated API service layer for better code organization
+- User authentication (register, login, logout)
+- Auto-seeded sample bookmarks for new users
+- Create bookmarks with title, URL, tags, and notes
+- Search bookmarks by title, URL, tags, or notes
+- Mark bookmarks as favorites (sorted to top)
+- Delete bookmarks with confirmation dialog
+- Session-based authentication with secure cookies
+- Responsive layout with adjustable border radius
+- Custom purple and magenta theme
+- Separated API service layer
 
-## Installation & Setup
+## File Guide
+
+This section explains the files I wrote and what each does.
+
+### Backend
+- [backend/app.py](backend/app.py) is the Flask application entry point. It creates the app, loads configuration, initializes the database connection, and registers the route blueprints.
+- [backend/db.py](backend/db.py) contains the database setup and connection helpers for the CS50 SQL library.
+- [backend/schema.sql](backend/schema.sql) defines the SQLite tables for users and bookmarks.
+- [backend/utils.py](backend/utils.py) contains shared helpers like `require_login()` to enforce authentication on protected routes.
+- [backend/routes/__init__.py](backend/routes/__init__.py) sets up the blueprint exports so they can be registered cleanly in the app.
+- [backend/routes/auth.py](backend/routes/auth.py) implements register, login, logout, and session user endpoints.
+- [backend/routes/bookmarks.py](backend/routes/bookmarks.py) implements CRUD endpoints for bookmarks plus the favorite toggle.
+- [backend/seed.py](backend/seed.py) inserts sample data for users who already exist but have no bookmarks.
+- [backend/bookmarks_seed.py](backend/bookmarks_seed.py) provides the list of default bookmarks used by the seeding logic.
+- [backend/requirements.txt](backend/requirements.txt) lists Python dependencies.
+
+### Frontend
+- [frontend/index.html](frontend/index.html) is the Vite entry HTML.
+- [frontend/src/main.jsx](frontend/src/main.jsx) bootstraps React and mounts the app.
+- [frontend/src/App.jsx](frontend/src/App.jsx) is the main layout and routing logic for authenticated vs. unauthenticated views.
+- [frontend/src/Login.jsx](frontend/src/Login.jsx) handles registration and login forms.
+- [frontend/src/Bookmarks.jsx](frontend/src/Bookmarks.jsx) renders the bookmark list, search, and create/delete interactions.
+- [frontend/src/api.js](frontend/src/api.js) contains shared request helpers and base configuration.
+- [frontend/src/services/authApi.js](frontend/src/services/authApi.js) wraps authentication calls and keeps auth requests in one place.
+- [frontend/src/services/bookmarkApi.js](frontend/src/services/bookmarkApi.js) wraps bookmark CRUD requests and the favorite toggle.
+- [frontend/src/index.css](frontend/src/index.css) pulls together Tailwind and project styles.
+- [frontend/src/styles/base.css](frontend/src/styles/base.css) provides global typography and base element styles.
+- [frontend/src/styles/theme.css](frontend/src/styles/theme.css) defines the color tokens used across the app.
+- [frontend/src/styles/components.css](frontend/src/styles/components.css) contains reusable component class styles.
+- [frontend/src/styles/tailwind.css](frontend/src/styles/tailwind.css) defines Tailwind directives for build-time generation.
+
+## Installation and Setup
 
 ### Prerequisites
 - Python 3.8 or higher
 - Node.js 18 or higher
 - npm
 
-#### Backend Setup
+### Backend Setup
 
 1. Navigate to the backend directory:
 ```bash
@@ -77,9 +109,7 @@ pip install -r requirements.txt
 flask --app app run
 ```
 
-The backend will run on `http://localhost:5000`
-
-**Note:** The database schema and `.env` configuration are already included. No setup needed.
+The backend runs on `http://localhost:5000`.
 
 ### Frontend Setup
 
@@ -98,23 +128,11 @@ npm install
 npm run dev
 ```
 
-The frontend will run on `http://localhost:5173` (or another port if 5173 is busy)
+The frontend runs on `http://localhost:5173` (or another port if 5173 is busy).
 
 ## Sample Data
 
-New users automatically receive 10 sample bookmarks on registration:
-- GitHub
-- Stack Overflow
-- MDN Web Docs
-- CSS-Tricks
-- Dev.to
-- Tailwind CSS
-- React Documentation
-- Python.org
-- Flask Documentation
-- YouTube
-
-To manually seed bookmarks for existing users without bookmarks:
+New users automatically receive 10 sample bookmarks on registration. To manually seed bookmarks for existing users without bookmarks:
 ```bash
 cd backend
 python seed.py
@@ -122,36 +140,14 @@ python seed.py
 
 ## Usage
 
-1. Open your browser to `http://localhost:5173`
-2. **Create a new account** - You'll automatically receive 10 sample bookmarks
-3. **Test features:**
-   - Search bookmarks by title, URL, tags, or notes
-   - Click the star icon (☆/★) to mark favorites - they appear at the top
-   - Delete bookmarks - a confirmation dialog will appear
-   - Click bookmark titles to open URLs in a new tab
-   - Log out and log back in - session persists
-4. **Create more bookmarks** to test the full CRUD functionality
-
-## Testing Instructions for Graders
-
-**Nothing needs to be configured. Just follow the Quick Start above.**
-
-1. Start both backend and frontend servers
-2. Open `http://localhost:5173` in your browser
-3. Create a test account (any username/password)
-4. You'll automatically see 10 sample bookmarks
-5. Test the features:
-   - ✅ **Search**: Use the search bar (works on title, URL, tags, notes)
-   - ✅ **Create**: Add a new bookmark via the form
-   - ✅ **Update**: Edit functionality (if implemented)
-   - ✅ **Delete**: Click Delete button, confirm the dialog
-   - ✅ **Favorites**: Click star icon - moves to top
-   - ✅ **Authentication**: Log out, create another account, log back in
-   - ✅ **Responsive Design**: Resize browser window
-
-**Database:** SQLite file at `backend/bookmarks.db` - automatically created on first run
-
-**Sample Data:** Automatically seeded for new users on registration
+1. Open your browser to `http://localhost:5173`.
+2. Create a new account; you will automatically receive 10 sample bookmarks.
+3. Try the features:
+   - Search bookmarks by title, URL, tags, or notes.
+   - Click the star icon to mark favorites; favorites appear at the top.
+   - Delete bookmarks; a confirmation dialog appears.
+   - Click bookmark titles to open URLs in a new tab.
+4. Create more bookmarks to test the full CRUD flow.
 
 ## Database Schema
 
@@ -182,80 +178,58 @@ CREATE TABLE bookmarks (
 ## API Endpoints
 
 ### Authentication
-- `POST /api/register` - Create a new user account
-- `POST /api/login` - Authenticate and create session
-- `POST /api/logout` - Clear session
-- `GET /api/me` - Get current user info
+- `POST /api/register` creates a new user account
+- `POST /api/login` authenticates and creates a session
+- `POST /api/logout` clears the session
+- `GET /api/me` returns the current user
 
 ### Bookmarks
-- `GET /api/bookmarks` - List all user's bookmarks (with optional `?query=` search)
-- `POST /api/bookmarks` - Create a new bookmark
-- `PUT /api/bookmarks/:id` - Update a bookmark
-- `DELETE /api/bookmarks/:id` - Delete a bookmark
-- `PATCH /api/bookmarks/:id/favorite` - Toggle favorite status
-
-## Code Architecture
-
-### Backend Organization
-- **Modular routing:** Separate modules for auth and bookmarks endpoints
-- **Shared utilities:** `utils.py` contains reusable functions (e.g., `require_login()`)
-- **Clean variable names:** Descriptive names throughout codebase (no single-letter variables)
-- **Automatic seeding:** New users receive sample bookmarks automatically on registration
-
-### Frontend Organization
-- **Service layer:** API calls separated into `services/authApi.js` and `services/bookmarkApi.js`
-- **Component-focused:** Components handle UI logic, services handle API communication
-- **Modular styling:** CSS organized into tailwind.css, theme.css, base.css, components.css
-- **Reusable components:** All recurring UI elements use component classes from components.css
+- `GET /api/bookmarks` lists all user bookmarks (optional `?query=` search)
+- `POST /api/bookmarks` creates a new bookmark
+- `PUT /api/bookmarks/:id` updates a bookmark
+- `DELETE /api/bookmarks/:id` deletes a bookmark
+- `PATCH /api/bookmarks/:id/favorite` toggles favorite status
 
 ## Design Decisions
 
-- **Session-based auth** instead of JWT for simplicity and better security for a single-domain app
-- **SQLite** for portability and ease of grading
-- **React** for modern, reactive UI without page reloads
-- **Tailwind CSS v4** with @theme directive
-- **Service layer pattern** to separate API calls from UI components for cleaner, testable code
-- **Component-based CSS** for maintainability and DRY principle
-- **Auto-seeding on registration** to provide users an immediate, populated experience
-- **Favorites sorting** - favorites appear first in the list for quick access
-- **Descriptive variable names** and consolidated duplicate functions for code clarity
+I debated using JWT for authentication but chose session-based auth for simplicity and better security in a single-domain app. Server-side sessions keep token handling off the client and avoid local storage pitfalls. I also weighed using PostgreSQL, but SQLite fits the scope and grading environment and keeps setup minimal.
 
-## Challenges & Solutions
+On the frontend, I considered using a state management library, but the app is small enough that local component state and a clear service layer are sufficient and easier to explain. For styling, I used Tailwind CSS v4 with custom theme tokens and a small set of component classes to keep visuals consistent while still allowing quick iteration. I also decided to seed bookmarks for new users so the UI does not feel empty and users can immediately see search, favorites, and list interactions without first creating data.
 
-- **CORS issues**: Solved by configuring Flask-CORS with credentials support
-- **Cookie blocking**: Fixed by ensuring backend and frontend use the same domain (localhost)
-- **Session persistence**: Flask sessions stored in `.flask_session/` folder (not committed to git)
-- **Duplicate code**: Consolidated `require_login()` in `utils.py` module
+## Challenges and Solutions
 
+- CORS issues were resolved by configuring Flask-CORS with credentials support.
+- Cookie blocking was avoided by keeping both services on localhost.
+- Session persistence is handled via Flask-Session stored in the `.flask_session/` folder (not committed to git).
+- Duplicate route helpers were consolidated into `require_login()` in `utils.py`.
 
 ## AI Assistance Disclosure
 
 In accordance with CS50's academic honesty policy, I disclose the following:
 
-**AI tools used:** GitHub Copilot and ChatGPT were used during development
+**AI tools used:** GitHub Copilot and ChatGPT were used during development.
 
 **How AI was used:**
-- Assistance with Flask routing patterns and error handling structure
-- Help debugging CORS and session configuration issues
-- Code refactoring suggestions for component organization
+- Assistance with Flask routing patterns and error handling structure.
+- Help debugging CORS and session configuration issues.
+- Refactoring suggestions for component organization.
 
 **What I implemented myself:**
-- All business logic and feature requirements
-- Database schema design
-- Component architecture decisions
-- API endpoint design
-- UI/UX layout and color scheme choices
-- Problem-solving approach for session management
-- Search functionality implementation
+- All business logic and feature requirements.
+- Database schema design.
+- Component architecture decisions.
+- API endpoint design.
+- UI and layout choices.
+- Search functionality implementation.
 
 **Understanding:** I understand all code in this project and can explain any part of it. The AI assisted with syntax and best practices, but all architectural decisions and feature implementations were my own.
 
 ## Future Enhancements
 
 - Edit bookmark functionality (inline or modal)
-- Bookmark folders/categories
+- Bookmark folders or categories
 - URL validation and auto-prefixing
-- Import/export bookmarks
+- Import and export bookmarks
 - Browser extension integration
 - Sharing bookmarks with other users
 
